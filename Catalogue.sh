@@ -16,3 +16,8 @@ cd /app
 npm install
 
 systemctl daemon-reload
+
+cp mongo.repo /etc/yum.repos.d/mongo.repo
+dnf install mongodb-org-shell -y
+
+mongo --host mongodb-dev.guntikadevops.online </app/schema/catalogue.js
