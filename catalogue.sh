@@ -4,8 +4,8 @@ sudo yum install nodejs -y --setopt=nodesource-nodejs.module_hotfixes=1
 
 dnf install nodejs -y
 
-cp mongo.repo /etc/yum.repos.d/mongo.repo
-cp catalogue.service /etc/sysctemd/system/catalogue.service
+cp mongo.conf /etc/yum.repos.d/mongo.repo
+cp catalogue.conf /etc/sysctemd/system/catalogue.service
 
 useradd roboshop
 rm -rf /app
