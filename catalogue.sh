@@ -25,3 +25,4 @@ systemctl start catalogue
 dnf install mongodb-org-shell -y
 
 mongo --host mongodb-dev.guntikadevops.online </app/schema/catalogue.js
+
