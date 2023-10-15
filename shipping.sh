@@ -28,5 +28,6 @@ systemctl start shipping
 echo -e "\e[36m >>>>>>> Creating mysql schema >>>>>>>> \e[0m"
 dnf install mysql -y
 mysql -h mysql-dev.guntikadevops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
+
 echo -e "\e[36m >>>>>>> Restarting the shipping >>>>>>>> \e[0m"
 systemctl restart shipping
