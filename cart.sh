@@ -2,7 +2,7 @@ sudo yum install https://rpm.nodesource.com/pub_18.x/nodistro/repo/nodesource-re
 sudo yum install nodejs -y --setopt=nodesource-nodejs.module_hotfixes=1
 
 useradd roboshop
-cp cart.conf /etc/sysctemd/system/cart.service
+cp cart.conf /etc/systemd/system/cart.service
 
 mkdir -rf /app
 mkdir /app
