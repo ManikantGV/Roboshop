@@ -2,6 +2,7 @@ sudo yum install https://rpm.nodesource.com/pub_18.x/nodistro/repo/nodesource-re
 sudo yum install nodejs -y --setopt=nodesource-nodejs.module_hotfixes=1
 
 cp mongo.conf /etc/yum.repos.d/mongo.repo
+cp user.conf /etc/systemd/system/user.service
 useradd roboshop
 
 rm -rf /app
