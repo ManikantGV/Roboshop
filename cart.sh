@@ -5,9 +5,6 @@ sudo yum install nodejs -y --setopt=nodesource-nodejs.module_hotfixes=1
 echo -e "\e[36m >>>>>>> Creating the roboshop user >>>>>>>> \e[0m"
 useradd roboshop
 
-echo -e "\e[36m >>>>>>> copying the cart service >>>>>>>> \e[0m"
-cp cart.conf /etc/systemd/system/cart.service
-
 echo -e "\e[36m >>>>>>> Creating the app folder >>>>>>>> \e[0m"
 rm -rf /app
 mkdir /app
@@ -20,8 +17,11 @@ echo -e "\e[36m >>>>>>> unzipping the app content >>>>>>>> \e[0m"
 unzip /tmp/cart.zip
 
 echo -e "\e[36m >>>>>>> Install nodeJS dependencies >>>>>>>> \e[0m"
-cd /app
+#cd /app
 npm install
+
+echo -e "\e[36m >>>>>>> copying the cart service >>>>>>>> \e[0m"
+cp /home/centos/roboshop-shell/cart.conf /etc/systemd/system/cart.service
 
 echo -e "\e[36m >>>>>>> start Cart service >>>>>>>> \e[0m"
 systemctl daemon-reload
