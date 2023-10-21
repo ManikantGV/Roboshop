@@ -21,8 +21,8 @@ cd /app
 
 echo -e "\e[36m >>>>>>> unzip catalogue.zop >>>>>>>> \e[0m"
 unzip /tmp/catalogue.zip
-
 cd /app
+
 echo -e "\e[36m >>>>>>> NPM installing >>>>>>>> \e[0m"
 npm install
 
