@@ -8,7 +8,7 @@ echo -e "\e[36m >>>>>>> Installing the redis server >>>>>>>> \e[0m"
 dnf install redis -y
 
 echo -e "\e[36m >>>>>>> changing the ip address 0.0.0.0 in redis.conf >>>>>>>> \e[0m"
-sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/redis.conf
+sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/redis.conf  /etc/redis/redis.conf
 
 echo -e "\e[36m >>>>>>> Enable and start the redis server >>>>>>>> \e[0m"
 systemctl enable redis
