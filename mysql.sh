@@ -2,7 +2,7 @@
 echo -e "\e[36m >>>>>>> disabling the default mysql >>>>>>>> \e[0m"
 dnf module disable mysql -y
 echo -e "\e[36m >>>>>>> installing the  mysql >>>>>>>> \e[0m"
-yum install mysql-community-server -y
+dnf install mysql-community-server -y
 
 echo -e "\e[36m >>>>>>> copying the default repo file >>>>>>>> \e[0m"
 cp mysql.conf /etc/yum.repos.d/mysql.repo
