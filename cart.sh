@@ -17,7 +17,7 @@ echo -e "\e[36m >>>>>>> unzipping the app content >>>>>>>> \e[0m"
 unzip /tmp/cart.zip
 
 echo -e "\e[36m >>>>>>> Install nodeJS dependencies >>>>>>>> \e[0m"
-#cd /app
+cd /app
 npm install
 
 echo -e "\e[36m >>>>>>> copying the cart service >>>>>>>> \e[0m"
