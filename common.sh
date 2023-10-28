@@ -6,8 +6,7 @@ if [ -z $log_file ]; then
 fi
 
 
-
 function print_head() {
     echo -e "\e[36m>>>>>>>> $1 >>>>>>>>>>>>>>>\e[0m"
-    echo -e "\e[36m>>>>>>>> $1 >>>>>>>>>>>>>>>\e[0m" &>>log_file
+    echo -e "\e[36m>>>>>>>> $1 >>>>>>>>>>>>>>>\e[0m" &>>$log_file
 }
