@@ -4,6 +4,7 @@ source common.sh
 print_head "installing the nginx repo"
 yum install nginx -y
 
+
 #echo -e "\e[36m >>>>>>> copying roboshop config file >>>>>>>> \e[0m"
 print_head "copying roboshop config file"
 cp roboshop.conf /etc/nginx/default.d/roboshop.conf
