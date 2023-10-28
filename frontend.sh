@@ -1,3 +1,5 @@
+source common.sh
+
 #echo -e "\e[36m >>>>>>> installing the nginx repo >>>>>>>> \e[0m"
 print_head "installing the nginx repo"
 yum install nginx -y
