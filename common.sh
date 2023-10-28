@@ -3,9 +3,6 @@ log_file=/tmp/roboshop.log
 #rm -f roboshop.log
 if [ -z $log_file ]; then
   rm -f $log_file
-  mkdir $log_file
-else
-  mkdir $log_file
 fi
 
 
