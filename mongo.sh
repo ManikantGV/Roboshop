@@ -1,15 +1,25 @@
-echo -e "\e[36m >>>>>>> Copying the mongo config file >>>>>>>> \e[0m"
-cp mongo.conf /etc/yum.repos.d/mongo.repo
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
 
-echo -e "\e[36m >>>>>>> installing thr mongodb >>>>>>>> \e[0m"
-dnf install mongodb-org -y
+print_head "Copying the mongo config file "
+cp mongo.conf /etc/yum.repos.d/mongo.repo &>>$log_file
+stat_check $?
 
-echo -e "\e[36m >>>>>>> enable and start mongo service  >>>>>>>> \e[0m"
-systemctl enable mongod
-systemctl start mongod
+print_head "installing thr mongodb"
+dnf install mongodb-org -y &>>$log_file
+stat_check $?
 
-echo -e "\e[36m >>>>>>> changing the IP address 0.0.0.0 in mogod config file >>>>>>>> \e[0m"
-sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/mongod.conf
+print_head "enable and start mongo service"
+systemctl enable mongod &>>$log_file
+stat_check $?
+systemctl start mongod &>>$log_file
+stat_check $?
 
-echo -e "\e[36m >>>>>>> Restating the mongod service >>>>>>>> \e[0m"
-systemctl restart mongod
+print_head "changing the IP address 0.0.0.0 in mogod config file"
+sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/mongod.conf &>>$log_file
+stat_check $?
+
+print_head "Restating the mongod service"
+systemctl restart mongod &>>$log_file
+stat_check $?
