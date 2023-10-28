@@ -27,7 +27,7 @@ cd /usr/share/nginx/html &>>$log_file
 stat_check $?
 
 print_head "unziping frontend zip folder"
-uzip /tmp/frontend.zip &>>$log_file
+unzip /tmp/frontend.zip &>>$log_file
 stat_check $?
 
 print_head "enable and restart nginx"
