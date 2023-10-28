@@ -1,9 +1,9 @@
 
 log_file=/tmp/roboshop.log
-#rm -f roboshop.log
-if [ -z $log_file ]; then
-  rm -f $log_file
-fi
+rm -f $log_file
+#if [ -z $log_file ]; then
+ # rm -f $log_file
+#fi
 
 
 function print_head() {
