@@ -2,6 +2,7 @@ script=$(realpath "$0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
 
+print_head "Frontend script initiating"
 print_head "installing the nginx repo"
 yum install nginx -y &>>$log_file
 stat_check $?
@@ -38,3 +39,5 @@ systemctl enable nginx &>>$log_file
 stat_check $?
 systemctl restart nginx &>>$log_file
 stat_check $?
+
+print_head "Frontend script completed"
