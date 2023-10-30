@@ -21,7 +21,7 @@ function stat_check() {
 }
 
 #mongodb client config
-function func_schema_setup() {
+function schema_setup() {
 
     print_head "Copy Mongo config file "
     cp mongo.conf /etc/yum.repos.d/mongo.repo &>>$log_file
@@ -61,7 +61,7 @@ function app_prereq() {
 
 }
 
-function sysstemd() {
+function systemd() {
 
         print_head "copying component the service "
         cp ${component}.service /etc/systemd/system/${component}.service &>>$log_file
@@ -86,8 +86,13 @@ function nodejs() {
   sudo yum install nodejs -y --setopt=nodesource-nodejs.module_hotfixes=1 &>>$log_file
   stat_check $?
 
+  app_prereq
+
   print_head "NPM installing"
   npm install
+  stat_check $?
 
+  schema_setup
+  systemd
 
 }
