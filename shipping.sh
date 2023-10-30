@@ -12,3 +12,4 @@ fi
 component=shipping
 db=mysql
 shipping
+
