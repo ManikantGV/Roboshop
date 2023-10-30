@@ -2,6 +2,7 @@ script=$(realpath "$0")
 script_path=$(dirname "$script")
 source ${script_path}/common.sh
 
+print_head "mongodb processing initiating "
 print_head "Copying the mongo config file "
 cp mongo.conf /etc/yum.repos.d/mongo.repo &>>$log_file
 stat_check $?
@@ -23,3 +24,5 @@ stat_check $?
 print_head "Restating the mongod service"
 systemctl restart mongod &>>$log_file
 stat_check $?
+
+print_head "mongodb process Completed"

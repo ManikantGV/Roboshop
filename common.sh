@@ -19,3 +19,75 @@ function stat_check() {
       echo "Refer the log file /tmp/roboshop.log for more information"
     fi
 }
+
+#mongodb client config
+function func_schema_setup() {
+
+    print_head "Copy Mongo config file "
+    cp mongo.conf /etc/yum.repos.d/mongo.repo &>>$log_file
+    stat_check $?
+
+    print_head "Installing mongodb client"
+    dnf install mongodb-org-shell -y &>>$log_file
+    stat_check $?
+
+    print_head "Load schema"
+    mongo --host mongodb-dev.guntikadevops.online </app/schema/${component}.js &>>$log_file
+    stat_check $?
+}
+
+function app_prereq() {
+
+    print_head "adding the roboshop user "
+    useradd roboshop &>>$log_file
+    stat_check $?
+
+
+    print_head "creating the app folder "
+    rm -rf /app &>>$log_file
+    stat_check $?
+    mkdir /app &>>$log_file
+    stat_check $?
+
+    print_head "downloading the catalogue zip folder"
+    curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>$log_file
+    stat_check $?
+    cd /app &>>$log_file
+    stat_check $?
+
+    print_head "Extract application"
+    unzip /tmp/${component}.zip &>>$log_file
+    #cd /app
+
+}
+
+function sysstemd() {
+
+        print_head "copying component the service "
+        cp ${component}.service /etc/systemd/system/${component}.service &>>$log_file
+        stat_check $?
+
+        print_head "enabling the catalogue service"
+        systemctl daemon-reload &>>$log_file
+        stat_check $?
+        systemctl enable ${component} &>>$log_file
+        stat_check $?
+        systemctl start ${component} &>>$log_file
+        stat_check $?
+
+}
+
+# nodejs repo installation
+function nodejs() {
+  print_head "Installing the nodejs"
+  sudo yum install https://rpm.nodesource.com/pub_18.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y &>>$log_file
+  stat_check $?
+
+  sudo yum install nodejs -y --setopt=nodesource-nodejs.module_hotfixes=1 &>>$log_file
+  stat_check $?
+
+  print_head "NPM installing"
+  npm install
+
+
+}
