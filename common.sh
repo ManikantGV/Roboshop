@@ -44,7 +44,7 @@ function schema_setup() {
         dnf install mysql -y
 
         print_head "Load schema"
-        mysql -h mysql-dev.guntikadevops.online -uroot -pRoboShop@1 < /app/schema/${component}.sql
+        mysql -h mysql-dev.guntikadevops.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql
     fi
 }
 
