@@ -1,18 +1,21 @@
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
 
-echo -e "\e[36m >>>>>>> disabling the default mysql >>>>>>>> \e[0m"
-dnf module disable mysql -y
-echo -e "\e[36m >>>>>>> installing the  mysql >>>>>>>> \e[0m"
-dnf install mysql-community-server -y
+print_head "disabling the default mysql "
+dnf module disable mysql -y &>>$log_file
+print_head "installing the  mysql "
+dnf install mysql-community-server -y &>>$log_file
 
-echo -e "\e[36m >>>>>>> copying the default repo file >>>>>>>> \e[0m"
-cp mysql.conf /etc/yum.repos.d/mysql.repo
+print_head "copying the default repo file"
+cp mysql.conf /etc/yum.repos.d/mysql.repo &>>$log_file
 
-echo -e "\e[36m >>>>>>> Enable and stating the mysql >>>>>>>> \e[0m"
-systemctl enable mysqld
-systemctl start mysqld
+print_head "Enable and stating the mysql"
+systemctl enable mysqld &>>$log_file
+systemctl start mysqld &>>$log_file
 
-echo -e "\e[36m >>>>>>> setting up the roboshop user >>>>>>>> \e[0m"
-mysql_secure_installation --set-root-pass RoboShop@1
+print_head "setting up the roboshop user"
+mysql_secure_installation --set-root-pass RoboShop@1 &>>$log_file
 
-echo -e "\e[36m >>>>>>> Check the password >>>>>>>> \e[0m"
-mysql -uroot -pRoboShop@1
+print_head "Check the password"
+mysql -uroot -pRoboShop@1 &>>$log_file
