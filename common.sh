@@ -147,7 +147,7 @@ function shipping() {
     print_head "clenaing the maven package and routed out application "
     mvn clean package  &>>$log_file
     stat_check $?
-    mv target/shipping-1.0.jar shipping.jar  &>>$log_file
+    mv target/${component}-1.0.jar ${component}.jar  &>>$log_file
     stat_check $?
 
     schema_setup
