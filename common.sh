@@ -41,9 +41,11 @@ function schema_setup() {
 function app_prereq() {
 
     print_head "adding the roboshop user "
-    useradd $app_user &>>$log_file
+    id $app_user &>>$log_file
+    if [ $? -nq 0 ]; then
+      useradd $app_user &>>$log_file
+    fi
     stat_check $?
-
 
     print_head "creating the app folder "
     rm -rf /app &>>$log_file
