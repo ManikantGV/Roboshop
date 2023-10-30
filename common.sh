@@ -24,6 +24,7 @@ function stat_check() {
 
 #mongodb client config
 function schema_setup() {
+    if [ "${db}" == "mongo" ]; then
 
     print_head "Copy Mongo config file "
     cp ${script_path}/mongo.conf /etc/yum.repos.d/mongo.repo &>>$log_file
@@ -36,6 +37,8 @@ function schema_setup() {
     print_head "Load schema"
     mongo --host mongodb-dev.guntikadevops.online </app/schema/${component}.js &>>$log_file
     stat_check $?
+
+    fi
 }
 
 function app_prereq() {
