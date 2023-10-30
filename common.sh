@@ -39,6 +39,13 @@ function schema_setup() {
     stat_check $?
 
     fi
+    if [ "${db}" == "mysql" ]; then
+         print_head "Creating mysql schema"
+        dnf install mysql -y
+
+        print_head "Load schema"
+        mysql -h mysql-dev.guntikadevops.online -uroot -pRoboShop@1 < /app/schema/${component}.sql
+    fi
 }
 
 function app_prereq() {
@@ -129,3 +136,20 @@ function redis() {
     stat_check $?
 }
 
+function shipping() {
+
+    print_head "installing mavin repos"
+    dnf install maven -y  &>>$log_file
+    stat_check $?
+
+    app_prereq
+
+    print_head "clenaing the maven package and routed out application "
+    mvn clean package  &>>$log_file
+    stat_check $?
+    mv target/shipping-1.0.jar shipping.jar  &>>$log_file
+    stat_check $?
+
+    schema_setup
+    systemd
+}
