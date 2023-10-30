@@ -1,4 +1,6 @@
-
+app_user=roboshop
+script=$(realpath "$0")
+script_path=$(dirname "$script")
 log_file=/tmp/roboshop.log
 rm -f $log_file
 #if [ -z $log_file ]; then
@@ -39,7 +41,7 @@ function schema_setup() {
 function app_prereq() {
 
     print_head "adding the roboshop user "
-    useradd roboshop &>>$log_file
+    useradd $app_user &>>$log_file
     stat_check $?
 
 
