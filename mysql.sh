@@ -4,7 +4,7 @@ source ${script_path}/common.sh
 mysql_root_password=$1
 
 if [ -z "$mysql_root_password" ]; then
-    echo "input mysql password is missing"
+    echo "input mysql password is missing -- RoboShop@1"
     exit
 fi
 

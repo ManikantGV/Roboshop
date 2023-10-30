@@ -153,3 +153,36 @@ function shipping() {
     schema_setup
     systemd
 }
+
+function python() {
+
+    print_head "Python installing "
+    dnf install python36 gcc python3-devel -y &>>$log_file
+    stat_check $?
+
+    app_prereq
+
+    print_head "pip install the requirements "
+    pip3.6 install -r requirements.txt &>>
+    stat_check $?
+
+    systemd
+
+}
+
+function golang() {
+    print_head "Installing the golang repo"
+    dnf install golang -y &>>$log_file
+    stat_check $?
+    app_prereq
+
+    echo -e "\e[36m >>>>>>> building the golang dispatch app >>>>>>>> \e[0m"
+    go mod init dispatch &>>$log_file
+    stat_check $? &>>$log_file
+    go get
+    stat_check $? &>>$log_file
+    go build
+    stat_check $? &>>$log_file
+
+    systemd
+}
