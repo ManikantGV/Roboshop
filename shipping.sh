@@ -7,6 +7,7 @@ mysql_root_password=$1
 #password
 if [ -z "$mysql_root_password" ]; then
     echo mysql password is empty
+    exit
 fi
 
 component=shipping
