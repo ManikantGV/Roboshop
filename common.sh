@@ -40,9 +40,9 @@ function schema_setup() {
 
 function app_prereq() {
 
-    print_head "adding the roboshop user "
     id $app_user &>>$log_file
     if [ $? -ne 0 ]; then
+      print_head "adding the roboshop user "
       useradd $app_user &>>$log_file
     fi
     stat_check $?
@@ -125,3 +125,4 @@ function redis() {
     systemctl start redis &>>$log_file
     stat_check $?
 }
+
