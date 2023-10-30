@@ -42,7 +42,7 @@ function app_prereq() {
 
     print_head "adding the roboshop user "
     id $app_user &>>$log_file
-    if [ $? -nq 0 ]; then
+    if [ $? -ne 0 ]; then
       useradd $app_user &>>$log_file
     fi
     stat_check $?
