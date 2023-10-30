@@ -100,3 +100,28 @@ function nodejs() {
   systemd
 
 }
+
+function redis() {
+
+    print_head "Installing the redis server "
+    dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>>$log_file
+    stat_check $?
+
+    print_head "enabling the redis servier"
+    dnf module enable redis:remi-6.2 -y &>>$log_file
+    stat_check $?
+
+    print_head "Installing the redis server"
+    dnf install redis -y &>>$log_file
+    stat_check $?
+
+    print_head "changing the ip address 0.0.0.0 in redis.conf "
+    sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/redis.conf  /etc/redis/redis.conf &>>$log_file
+    stat_check $?
+
+    print_head "Enable and start the redis server"
+    systemctl enable redis &>>$log_file
+    stat_check $?
+    systemctl start redis &>>$log_file
+    stat_check $?
+}
