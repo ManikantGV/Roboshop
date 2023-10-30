@@ -93,7 +93,7 @@ function nodejs() {
   app_prereq
 
   print_head "NPM installing"
-  npm install
+  npm install &>>$log_file
   stat_check $?
 
   schema_setup
