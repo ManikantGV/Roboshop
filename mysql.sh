@@ -3,9 +3,10 @@ script_path=$(dirname "$script")
 source ${script_path}/common.sh
 mysql_root_password=$1
 
+print_head "mysql Script Initiating"
 if [ -z "$mysql_root_password" ]; then
     echo "input mysql password is missing -- RoboShop@1"
-    exit
+    exit 1
 fi
 
 print_head "disabling the default mysql "

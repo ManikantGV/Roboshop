@@ -3,6 +3,7 @@ script_path=$(dirname "$script")
 source ${script_path}/common.sh
 rabbitmq_appuser_password=$1
 
+print_head "rabbitMQ Script Initiating"
 if [ -z "$rabbitmq_appuser_password" ]; then
     echo "Rabit Mq password is empty -- please enter roboshop123"
     exit 1
