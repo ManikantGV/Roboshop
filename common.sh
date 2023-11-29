@@ -163,7 +163,7 @@ function python() {
     app_prereq
 
     print_head "pip install the requirements "
-    pip3.6 install -r requirements.txt &>>
+    pip3 install -r requirements.txt &>>
     stat_check $?
 
     systemd
