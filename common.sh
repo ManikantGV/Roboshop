@@ -86,7 +86,7 @@ function systemd() {
         stat_check $?
         systemctl enable ${component} &>>$log_file
         stat_check $?
-        systemctl start ${component} &>>$log_file
+        systemctl restart ${component} &>>$log_file
         stat_check $?
 
 }
@@ -132,7 +132,7 @@ function redis() {
     print_head "Enable and start the redis server"
     systemctl enable redis &>>$log_file
     stat_check $?
-    systemctl start redis &>>$log_file
+    systemctl restart redis &>>$log_file
     stat_check $?
 }
 
