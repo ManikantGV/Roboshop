@@ -13,14 +13,15 @@ print_head "disabling the default mysql "
 dnf module disable mysql -y &>>$log_file
 stat_check $?
 
+print_head "copying the default repo file"
+cp $script_path/mysql.conf /etc/yum.repos.d/mysql.repo &>>$log_file
+stat_check $?
+
 print_head "installing the  mysql "
 sleep 5
 dnf install mysql-community-server -y &>>$log_file
 stat_check $?
 
-print_head "copying the default repo file"
-cp $script_path/mysql.conf /etc/yum.repos.d/mysql.repo &>>$log_file
-stat_check $?
 
 print_head "Enable and stating the mysql"
 systemctl enable mysqld &>>$log_file
