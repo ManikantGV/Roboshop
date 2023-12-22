@@ -22,7 +22,6 @@ sleep 5
 dnf install mysql-community-server -y &>>$log_file
 stat_check $?
 
-
 print_head "Enable and stating the mysql"
 systemctl enable mysqld &>>$log_file
 stat_check $?
