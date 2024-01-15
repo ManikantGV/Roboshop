@@ -42,9 +42,11 @@ function schema_setup() {
     if [ "${db}" == "mysql" ]; then
          print_head "Creating mysql schema"
         dnf install mysql -y
+        stat_check $?
 
         print_head "Load schema"
-        mysql -h mysql-dev.guntikadevops.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql
+        mysql -h mysql-dev.guntikadevops.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>$log_file
+        stat_check $?
     fi
 }
 
