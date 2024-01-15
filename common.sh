@@ -45,7 +45,8 @@ function schema_setup() {
         stat_check $?
 
         print_head "Load schema"
-        mysql -h mysql-dev.guntikadevops.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>$log_file
+        #mysql -h mysql-dev.guntikadevops.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>$log_file.
+        mysql -h mysql-dev.guntikadevops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql &>>$log_file
         stat_check $?
     fi
 }
