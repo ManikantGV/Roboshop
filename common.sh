@@ -97,7 +97,8 @@ function nodejs() {
   sudo yum install https://rpm.nodesource.com/pub_18.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y &>>$log_file
   stat_check $?
 
-  sudo yum install nodejs -y --setopt=nodesource-nodejs.module_hotfixes=1 &>>$log_file
+  #sudo yum install nodejs -y --setopt=nodesource-nodejs.module_hotfixes=1 &>>$log_file
+  sudo yum install nodejs -y  &>>$log_file
   stat_check $?
 
   app_prereq
