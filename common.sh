@@ -66,7 +66,7 @@ function app_prereq() {
     mkdir /app &>>$log_file
     stat_check $?
 
-    print_head "downloading the catalogue zip folder"
+    print_head "downloading the  zip folder"
     curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>$log_file
     stat_check $?
     cd /app &>>$log_file
@@ -168,6 +168,10 @@ function python() {
 
     print_head "pip install the requirements "
     pip3 install -r requirements.txt &>>$log_file
+    stat_check $?
+
+    print_head "Update Passwords in System Service file"
+    sed -i -e "s|rabbitmq_appuser_password | ${rabbitmq_appuser_password}|" ${script_path}/payment.service &>>$log_file
     stat_check $?
 
     systemd
